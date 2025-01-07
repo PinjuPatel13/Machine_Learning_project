@@ -1,0 +1,45 @@
+# Core libraries for data manipulation and analysis
+pandas
+numpy
+scipy
+
+# Machine Learning libraries
+scikit-learn
+xgboost
+lightgbm
+
+# Visualization libraries
+matplotlib
+seaborn
+plotly
+
+# Text processing (for NLP tasks)
+nltk
+spacy
+wordcloud
+
+# Natural Language Processing and Sentiment Analysis
+textblob
+transformers
+
+# Deep Learning Libraries (if you are using deep learning models)
+tensorflow
+keras
+torch
+torchvision
+
+# Streamlit (for deploying interactive apps)
+streamlit
+
+# Flask (if you use it for web-based apps)
+flask
+
+# Recommender System Libraries (Collaborative filtering, Matrix factorization, etc.)
+surprise
+
+# Time Series forecasting libraries
+statsmodels
+
+# Miscellaneous libraries
+joblib  # For saving models
+pyforest  # Useful for automatic imports
