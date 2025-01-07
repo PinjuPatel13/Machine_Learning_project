@@ -10,10 +10,7 @@ This repository contains various machine learning projects aimed at solving real
 - [Intelligent Sales Forecasting System](#intelligent-sales-forecasting-system)
 - [Personalized E-Learning Recommendation System](#personalized-e-learning-recommendation-system)
 - [Movie Recommender System](#movie-recommender-system)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+  
 
 ## Brand Reputation Management
 This project uses sentiment analysis and natural language processing (NLP) to analyze customer feedback and social media posts, helping businesses understand their online reputation. The model identifies positive, negative, or neutral sentiments in customer reviews and provides valuable insights for brand management.
