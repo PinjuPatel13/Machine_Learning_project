@@ -174,8 +174,6 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-
-
 ---
 
 # **Customer Churn Prediction for SaaS Platforms**
@@ -184,31 +182,20 @@ This project is open-source and available under the [MIT License](LICENSE).
 This project aims to predict customer churn for Software as a Service (SaaS) platforms by analyzing customer usage patterns, subscription data, and feedback history. The goal is to help SaaS businesses predict which customers are likely to churn, so they can take preventive measures to retain them.
 
 ## **Objective**
-- **Customer Churn Prediction**: Develop a machine learning model to predict customer churn based on historical data such as subscription details, customer usage patterns, and feedback history.
-- **Data Collection**: Gather data from CRM systems, user activity logs, and customer support records.
+- **Customer Churn Prediction**: Predict customer churn based on historical data like subscription details, customer usage patterns, and feedback history.
 - **Data Preprocessing**: Clean and handle missing data, encode categorical features, and normalize the data.
-- **Model Development**: Train machine learning models such as **Logistic Regression**, **Random Forests**, and **XGBoost** to predict churn.
-- **Evaluation**: Evaluate the model using metrics such as **accuracy**, **confusion matrix**, and **ROC curve analysis**.
-- **Visualization**: Use **Matplotlib** and **Seaborn** to visualize insights and trends, and **Streamlit** to deploy the model with an interactive dashboard.
+- **Model Development**: Train machine learning models such as **Logistic Regression**, **Random Forest**, and **XGBoost**.
+- **Evaluation**: Evaluate the model's performance using accuracy, confusion matrix, and ROC curve analysis.
+- **Visualization**: Use **Matplotlib** and **Seaborn** to visualize trends and insights. Deploy the model via **Streamlit** for interactive use.
 
-## **Features**
-- **Data Preprocessing**: 
-  - Handle missing values and preprocess categorical variables using **Pandas** and **NumPy**.
-  - Normalize data using **scikit-learn**'s `LabelEncoder` and `StandardScaler`.
+## **Project Files**
+- **Data**: `Telco_Customer_Churn.csv` (Contains customer data, churn history, subscription details, etc.)
+- **Code**: 
+  - `app.py`: Streamlit deployment script for the model.
+  - `Customer_Churn_Prediction.ipynb`: Jupyter Notebook with model development, data preprocessing, and visualization.
+  - `requirements.txt`: Python dependencies for the project.
   
-- **Model Development**: 
-  - Train models such as **Logistic Regression**, **Random Forest Classifier**, and **XGBoost** using **scikit-learn** and **XGBoost** libraries.
-  
-- **Evaluation**: 
-  - Evaluate the performance of the models with metrics like **accuracy**, **confusion matrix**, and **ROC curve**.
-
-- **Visualization**:
-  - Visualize key patterns, trends, and model performance using **Matplotlib** and **Seaborn**.
-  - Create an interactive **Streamlit** dashboard to display customer churn predictions and actionable insights.
-
 ## **Requirements**
-To run this project, you'll need the following Python libraries:
-
 - Python 3.x
 - **Pandas**: For data manipulation and analysis.
 - **NumPy**: For numerical operations.
@@ -217,157 +204,75 @@ To run this project, you'll need the following Python libraries:
 - **Matplotlib**: For creating visualizations.
 - **Seaborn**: For advanced statistical visualizations.
 - **Streamlit**: For creating interactive dashboards.
-  
-You can install all the required dependencies by running:
+
+Install all dependencies by running:
 ```bash
 pip install -r requirements.txt
 ```
 
 ## **Installation**
 
-1. **Clone the Repository**:
-   Clone this repository to your local machine:
-   ```bash
-   git clone https://github.com/PinjuPatel13/Customer_Churn_Prediction.git
-   cd Customer_Churn_Prediction
-   ```
-
-2. **Create a Virtual Environment** (optional but recommended):
-   Create a virtual environment to isolate your dependencies:
-   ```bash
-   python -m venv venv
-   ```
-
-   - On **Windows**:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - On **macOS/Linux**:
-     ```bash
-     source venv/bin/activate
-     ```
-
-3. **Install Dependencies**:
-   Install all the required libraries:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## **Running the Project**
-
-### **Step 1: Load the Dataset**
-Ensure that you have the **Telco_Customer_Churn.csv** or your chosen dataset ready. This dataset should contain customer details, subscription history, usage data, and churn information.
-
-### **Step 2: Data Preprocessing**
-
-Use **Pandas** to clean and preprocess the data:
-
-```python
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-
-# Load the dataset
-df = pd.read_csv('Telco_Customer_Churn.csv')
-
-# Handle missing values and preprocessing steps
-df = df.dropna()  # Drop missing values for simplicity
-df['Churn'] = df['Churn'].map({'Yes': 1, 'No': 0})  # Convert 'Yes'/'No' to 1/0 for target column
-
-# Encode categorical variables
-encoder = LabelEncoder()
-df['gender'] = encoder.fit_transform(df['gender'])  # Example of encoding categorical variables
-
-# Split data into features and target
-X = df.drop('Churn', axis=1)  # Features
-y = df['Churn']  # Target (Churn)
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-```
-
-### **Step 3: Train the Model**
-
-You can use multiple classification models like **Logistic Regression**, **Random Forest**, and **XGBoost**. Here's an example of using **Random Forest**:
-
-```python
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-
-# Train the Random Forest model
-model = RandomForestClassifier()
-model.fit(X_train, y_train)
-
-# Predict on the test set
-y_pred = model.predict(X_test)
-
-# Evaluate the model's accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print(f'Accuracy: {accuracy}')
-```
-
-### **Step 4: Visualization**
-
-You can use **Matplotlib** and **Seaborn** for visualizing important patterns and the model's performance:
-
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Visualize the distribution of churn
-sns.countplot(x='Churn', data=df)
-plt.title('Churn Distribution')
-plt.show()
-
-# Feature importance visualization
-feature_importances = model.feature_importances_
-sns.barplot(x=X.columns, y=feature_importances)
-plt.title('Feature Importance')
-plt.show()
-```
-
-### **Step 5: Deploy with Streamlit**
-
-You can deploy your model with **Streamlit**. Below is an example of how to create a simple app to predict customer churn:
-
-```python
-import streamlit as st
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-
-# Load the trained model (if saved)
-model = RandomForestClassifier()
-model.fit(X_train, y_train)  # Replace with actual model loading if saved
-
-# Create Streamlit interface
-st.title('Customer Churn Prediction for SaaS Platforms')
-
-# Input fields for prediction
-age = st.number_input('Customer Age')
-gender = st.selectbox('Gender', ['Male', 'Female'])
-
-# Collect other features as required...
-
-# Make prediction
-input_data = [[age, gender]]  # Add more features as required
-prediction = model.predict(input_data)
-
-# Display the result
-if prediction == 1:
-    st.write('This customer is likely to churn.')
-else:
-    st.write('This customer is not likely to churn.')
-
-```
-
-To run the Streamlit app:
+### Step 1: Clone the Repository
 ```bash
-streamlit run app.py
+git clone https://github.com/PinjuPatel13/Customer_Churn_Prediction.git
+cd Customer_Churn_Prediction
 ```
 
-### **Step 6: Evaluate and Improve**
-- Evaluate model performance using **Confusion Matrix** and **ROC Curve**.
-- Improve the model with **hyperparameter tuning** or test other algorithms like **XGBoost** for better performance.
+### Step 2: Create a Virtual Environment (Optional)
+(Optional, but recommended for isolating dependencies)
+
+- On **Windows**:
+  ```bash
+  python -m venv venv
+  venv\Scripts\activate
+  ```
+
+- On **macOS/Linux**:
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
+
+### Step 3: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+## **How to Run the Project**
+
+### Step 1: Prepare the Dataset
+Make sure the dataset (`Telco_Customer_Churn.csv`) is available in the project directory. This dataset contains customer details, subscription history, usage data, and churn information.
+
+### Step 2: Preprocess the Data
+The data has been preprocessed in the code files (`Customer_Churn_Prediction.ipynb`), including handling missing values, encoding categorical features, and splitting the data into training and testing sets.
+
+### Step 3: Train the Model
+The code for training the model is already included in the notebook file (`Customer_Churn_Prediction.ipynb`). The models used are **Logistic Regression**, **Random Forest**, and **XGBoost**.
+
+Run the notebook in your preferred environment (Jupyter Notebook, VSCode, or any Python IDE) to train and evaluate the models.
+
+### Step 4: Run Streamlit App
+To deploy the model with an interactive interface:
+
+1. Run the following command to start the Streamlit app:
+   ```bash
+   streamlit run app.py
+   ```
+
+2. This will open the app in your browser, where you can input customer data and get churn predictions in real-time.
+
+### Example of Streamlit Interface:
+- Input customer details (e.g., age, gender, etc.)
+- Get churn prediction (whether the customer is likely to churn or not).
+
+## **Visualizations**
+The notebook includes visualizations like:
+- **Churn Distribution**: Visualize how many customers are likely to churn vs. not.
+- **Feature Importance**: Display which features are most important for predicting churn.
+
+## **Evaluation**
+- The models are evaluated using **accuracy**, **confusion matrix**, and **ROC curve analysis**.
+- You can experiment with different hyperparameters and models to improve accuracy.
 
 ## **License**
 This project is open-source and available under the [MIT License](LICENSE).
